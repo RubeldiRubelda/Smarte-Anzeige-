@@ -111,7 +111,28 @@
 
 
 
+        async function loadStationNumber() {
+    try {
+        const response = await fetch("http://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=1");
+        const data = await response.json();
 
+        // Stationsname auslesen
+       
+        const bahnnr = data?.stationboard[0].category ?? "NaN";
+        const bahnzahl = data?.stationboard[0].number ?? "NaN";
+
+        // In HTML einsetzen
+        
+        document.getElementById("nr1").textContent = bahnnr + bahnzahl;
+
+    } catch (error) {
+        console.error("Fehler beim Laden:", error);
+        document.getElementById("stationsname").textContent = "Fehler beim Laden";
+    }
+}
+
+// Beim Laden der Seite ausführen
+loadStationNumber();
 
 
         async function loadStationName() {
@@ -121,10 +142,12 @@
 
         // Stationsname auslesen
         const stationName = data?.station?.name ?? "Unbekannte Station";
-        const destination = data?.station?.name ?? "Unbekannte Station";
+        
 
         // In HTML einsetzen
         document.getElementById("stationsname").textContent = "Fährt ab " + stationName + " nach" ;
+        
+        
 
     } catch (error) {
         console.error("Fehler beim Laden:", error);
