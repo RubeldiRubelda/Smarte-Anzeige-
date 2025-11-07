@@ -1,4 +1,4 @@
- // WMO Weather Codes zu Beschreibung
+// WMO Weather Codes zu Beschreibung
         const weatherCodes = {
             0: 'Klarer Himmel',
             1: 'Hauptsächlich klar',
@@ -121,22 +121,23 @@
         const bahnnr = data?.stationboard[0].category ?? "NaN";
         const bahnzahl = data?.stationboard[0].number ?? "NaN";
         const destination = data?.stationboard[0].to ?? "Unbekanntes Ziel";
-        const delay = data?.stationboard[0].stop.delay ?? "Pünktlich";
-        const departureTime = data?.stationboard[0].departure ?? "Unbekannte Zeit";
+        const delay = data?.stationboard[0].stop.delay ?? "0";
+        const departureTime = data?.stationboard[0].stop.departure ?? "Unbekannte Zeit"; // Ausgabe Format: 2025-11-07T14:10:00+0100
+
+        console.log("Abfahrtszeit Roh:", data?.stationboard[0].departure );
 
         // In HTML einsetzen
         
         document.getElementById("nr1").textContent = bahnnr + bahnzahl;
         document.getElementById("stationsname").textContent = "Fährt ab " + stationName + " nach " + destination;
-            
-        const time = new Date(departureTime);
-        const hours = time.getHours().toString().padStart(2, '0');
-        const minutes = time.getMinutes().toString().padStart(2, '0');
-        document.getElementById("abfahrt1").textContent = "Abfahrt: " + hours + ":" + minutes;
 
-        if (delay !== 0) {
-            document.getElementById("verspätung1").textContent = "Verspätung: " + delay + " Minuten";
-        }
+        // Abfahrtszeit formatieren
+        const depDate = new Date(departureTime);
+        const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
+        document.getElementById("abfahrt1").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
+
+
+
 
     } catch (error) {
         console.error("Fehler beim Laden:", error);
@@ -147,3 +148,21 @@
 // Beim Laden der Seite ausführen
 öVabfahrt();
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+document.getElementById("funktioniert").textContent = "👋 Alle Systeme funktionieren einwandfrei •";
