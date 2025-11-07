@@ -121,16 +121,19 @@
         const bahnnr = data?.stationboard[0].category ?? "NaN";
         const bahnzahl = data?.stationboard[0].number ?? "NaN";
         const destination = data?.stationboard[0].to ?? "Unbekanntes Ziel";
-        const delay = data?.stationboard[0].stop.delay ?? "0";
+        const delay = data?.stationboard[0].stop.delay ?? "Ufpasse";
         const departureTime = data?.stationboard[0].stop.departure ?? "Unbekannte Zeit"; // Ausgabe Format: 2025-11-07T14:10:00+0100
 
-        console.log("Abfahrtszeit Roh:", data?.stationboard[0].departure );
+        
 
         // In HTML einsetzen
         
         document.getElementById("nr1").textContent = bahnnr + bahnzahl;
         document.getElementById("stationsname").textContent = "Fährt ab " + stationName + " nach " + destination;
-
+        console.log(delay);
+        if (delay > 0) {
+            document.getElementById("verspätung1").textContent = "Verspätung: +" + delay + " Min.";
+        }
         // Abfahrtszeit formatieren
         const depDate = new Date(departureTime);
         const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
