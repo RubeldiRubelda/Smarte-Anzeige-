@@ -128,7 +128,12 @@
         
         document.getElementById("nr1").textContent = bahnnr + bahnzahl;
         document.getElementById("stationsname").textContent = "Fährt ab " + stationName + " nach " + destination;
-        document.getElementById("abfahrt1").textContent = "Abfahrt: " + new Date(departureTime).toLocaleTimeString('de-CH', { hour: '2-digit', minute: '2-digit' });
+            
+        const time = new Date(departureTime);
+        const hours = time.getHours().toString().padStart(2, '0');
+        const minutes = time.getMinutes().toString().padStart(2, '0');
+        document.getElementById("abfahrt1").textContent = "Abfahrt: " + hours + ":" + minutes;
+
         if (delay !== 0) {
             document.getElementById("verspätung1").textContent = "Verspätung: " + delay + " Minuten";
         }
