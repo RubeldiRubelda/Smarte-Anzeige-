@@ -98,3 +98,39 @@
             // Wetter alle 10 Minuten aktualisieren
             setInterval(loadWeather, 600000);
         });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        async function loadStationName() {
+    try {
+        const response = await fetch("http://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=1");
+        const data = await response.json();
+
+        // Stationsname auslesen
+        const stationName = data?.station?.name ?? "Unbekannte Station";
+        const destination = data?.station?.name ?? "Unbekannte Station";
+
+        // In HTML einsetzen
+        document.getElementById("stationsname").textContent = "Fährt ab " + stationName + " nach" ;
+
+    } catch (error) {
+        console.error("Fehler beim Laden:", error);
+        document.getElementById("stationsname").textContent = "Fehler beim Laden";
+    }
+}
+
+// Beim Laden der Seite ausführen
+loadStationName();
