@@ -111,43 +111,27 @@
 
 
 
-        async function loadStationNumber() {
-    try {
-        const response = await fetch("http://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=1");
-        const data = await response.json();
-
-        // Stationsname auslesen
-       
-        const bahnnr = data?.stationboard[0].category ?? "NaN";
-        const bahnzahl = data?.stationboard[0].number ?? "NaN";
-
-        // In HTML einsetzen
-        
-        document.getElementById("nr1").textContent = bahnnr + bahnzahl;
-
-    } catch (error) {
-        console.error("Fehler beim Laden:", error);
-        document.getElementById("stationsname").textContent = "Fehler beim Laden";
-    }
-}
-
-// Beim Laden der Seite ausführen
-loadStationNumber();
-
-
-        async function loadStationName() {
+        async function öVabfahrt() {
     try {
         const response = await fetch("http://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=1");
         const data = await response.json();
 
         // Stationsname auslesen
         const stationName = data?.station?.name ?? "Unbekannte Station";
-        
+        const bahnnr = data?.stationboard[0].category ?? "NaN";
+        const bahnzahl = data?.stationboard[0].number ?? "NaN";
+        const destination = data?.stationboard[0].to ?? "Unbekanntes Ziel";
+        const delay = data?.stationboard[0].stop.delay ?? "Pünktlich";
+        const departureTime = data?.stationboard[0].departure ?? "Unbekannte Zeit";
 
         // In HTML einsetzen
-        document.getElementById("stationsname").textContent = "Fährt ab " + stationName + " nach" ;
         
-        
+        document.getElementById("nr1").textContent = bahnnr + bahnzahl;
+        document.getElementById("stationsname").textContent = "Fährt ab " + stationName + " nach " + destination;
+        document.getElementById("abfahrt1").textContent = "Abfahrt: " + new Date(departureTime).toLocaleTimeString('de-CH', { hour: '2-digit', minute: '2-digit' });
+        if (delay !== 0) {
+            document.getElementById("verspätung1").textContent = "Verspätung: " + delay + " Minuten";
+        }
 
     } catch (error) {
         console.error("Fehler beim Laden:", error);
@@ -156,4 +140,5 @@ loadStationNumber();
 }
 
 // Beim Laden der Seite ausführen
-loadStationName();
+öVabfahrt();
+
