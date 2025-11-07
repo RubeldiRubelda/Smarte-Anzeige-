@@ -266,7 +266,7 @@
         // Abfahrtszeit formatieren
         const depDate = new Date(departureTime);
         const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
-        document.getElementById("abfahrt4").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
+        document.getElementById("abfahrt3").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
 
 
 
@@ -307,7 +307,7 @@
         // Abfahrtszeit formatieren
         const depDate = new Date(departureTime);
         const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
-        document.getElementById("abfahrt2").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
+        document.getElementById("abfahrt4").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
 
 
 
