@@ -160,7 +160,85 @@
 
 
 
+        async function öVabfahrt2() {
+    try {
+        const response = await fetch("http://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
+        const data = await response.json();
 
+        // Stationsname auslesen
+        const stationName = data?.station?.name ?? "Unbekannte Station";
+        const bahnnr = data?.stationboard[1].category ?? "NaN";
+        const bahnzahl = data?.stationboard[1].number ?? "NaN";
+        const destination = data?.stationboard[1].to ?? "Unbekanntes Ziel";
+        const delay = data?.stationboard[1].stop.delay ?? "Ufpasse";
+        const departureTime = data?.stationboard[1].stop.departure ?? "Unbekannte Zeit"; // Ausgabe Format: 2025-11-07T14:10:00+0100
+
+        
+
+        // In HTML einsetzen
+        
+        document.getElementById("nr2").textContent = bahnnr + bahnzahl;
+        document.getElementById("stationsname2").textContent = "Fährt ab " + stationName + " nach " + destination;
+        console.log(delay);
+        if (delay > 0) {
+            document.getElementById("verspätung2").textContent = "Verspätung: +" + delay + " Min.";
+        }
+        // Abfahrtszeit formatieren
+        const depDate = new Date(departureTime);
+        const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
+        document.getElementById("abfahrt2").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
+
+
+
+
+    } catch (error) {
+        console.error("Fehler beim Laden:", error);
+    }
+}
+
+// Beim Laden der Seite ausführen
+öVabfahrt2();
+
+
+
+        async function öVabfahrt3() {
+    try {
+        const response = await fetch("http://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
+        const data = await response.json();
+
+        // Stationsname auslesen
+        const stationName = data?.station?.name ?? "Unbekannte Station";
+        const bahnnr = data?.stationboard[1].category ?? "NaN";
+        const bahnzahl = data?.stationboard[1].number ?? "NaN";
+        const destination = data?.stationboard[1].to ?? "Unbekanntes Ziel";
+        const delay = data?.stationboard[1].stop.delay ?? "Ufpasse";
+        const departureTime = data?.stationboard[1].stop.departure ?? "Unbekannte Zeit"; // Ausgabe Format: 2025-11-07T14:10:00+0100
+
+        
+
+        // In HTML einsetzen
+        
+        document.getElementById("nr3").textContent = bahnnr + bahnzahl;
+        document.getElementById("stationsname3").textContent = "Fährt ab " + stationName + " nach " + destination;
+        console.log(delay);
+        if (delay > 0) {
+            document.getElementById("verspätung3").textContent = "Verspätung: +" + delay + " Min.";
+        }
+        // Abfahrtszeit formatieren
+        const depDate = new Date(departureTime);
+        const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
+        document.getElementById("abfahrt2").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
+
+
+
+
+    } catch (error) {
+        console.error("Fehler beim Laden:", error);
+    }
+}
+
+// Beim Laden der Seite ausführen
+öVabfahrt3();
 
 
 
