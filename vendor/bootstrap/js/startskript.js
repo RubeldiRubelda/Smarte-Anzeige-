@@ -203,6 +203,20 @@
 öVabfahrt();
 
 
-
+        async function joke() {
+            try {
+                const response = await fetch("https://v2.jokeapi.dev/joke/Programming");
+                const data = await response.json();
+                const jokeout = data?.joke ?? "Warten auf den nächsten Witz...";
+                console.log(jokeout);
+                
+                document.getElementById("witz").textContent = "Willkommen zurück! | Heutiger Witz: " + jokeout;
+            } catch (error) {
+                console.error("Fehler beim Abrufen des Witzes:", error);
+            }
+        }
+        
+        // Beim Laden der Seite ausführen
+        joke();
 
 document.getElementById("funktioniert").textContent = "👋 Alle Systeme funktionieren einwandfrei •";

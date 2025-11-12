@@ -26,7 +26,7 @@
                         </div>
                         <div>
                             <h1 class="h3 mb-1 fw-bold">Smart Home Dashboard</h1>
-                            <p class="text-muted mb-0">Willkommen zurück!</p>
+                            <p class="text-muted mb-0" id="witz">Willkommen zurück!</p>
                         </div>
                     </div>
                 </div>
@@ -146,6 +146,7 @@
                     <div class="row g-2">
                     <div id="markdown"></div>
                     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+                    <iframe src="joke.html" width="99%" height="450px" frameborder="0"></iframe>
                     <script>
                     fetch("infoscreen.md")
                       .then(res => res.text())
