@@ -137,8 +137,11 @@ suggestionsBox.addEventListener('click', e => {
                                     <circle cx="12" cy="10" r="3"></circle> 
                                 </svg>
                                 
-                                <span id="stationsnameinfo">Station: ❌</span>
+                                
+                                <input type="text" id="stationsnameinfo" placeholder="Station"></input>
+
                             </p>
+                            
                         </div>
                     </div>
 
@@ -243,11 +246,11 @@ suggestionsBox.addEventListener('click', e => {
     <script src="/vendor/bootstrap/js/startskript.js"></script>
     <script>
         const departures = [
-            { line: '<h6 id="nr1"></h6>', type: 'zug', destination: '<p id="stationsname"></p>', time: '<p id="abfahrt1"></p>', color: 'line-yellow', delay: '<h6 id="verspätung1">pünktlich</h6>' },
-            { line: '<h6 id="nr2"></h6>', type: 'zug', destination: '<p id="stationsname2"></p>', time: '<p id="abfahrt2"></p>', color: 'line-green', delay: '<h6 id="verspätung2">pünktlich</h6>' },
-            { line: '<h6 id="nr3"></h6>', type: 'zug', destination: '<p id="stationsname3"></p>', time: '<p id="abfahrt3"></p>', color: 'line-blue', delay: '<h6 id="verspätung3">pünktlich</h6>' },
-            { line: '<h6 id="nr4"></h6>', type: 'zug', destination: '<p id="stationsname4"></p>', time: '<p id="abfahrt4"></p>', color: 'line-purple', delay: '<h6 id="verspätung4">pünktlich</h6>' },
-            { line: '<h6 id="nr5"></h6>', type: 'zug', destination: '<p id="stationsname5"></p>', time: '<p id="abfahrt5"></p>', color: 'line-pink', delay: '<h6 id="verspätung5">pünktlich</h6>' },
+            { line: '<h6 id="nr1"></h6>', type: 'zug', destination: '<p id="stationsname"></p>', time: '<p id="abfahrt1"></p>', platform: '<div id="gleis1" class="small text-muted">Gleis: -</div>', color: 'line-yellow', delay: '<h6 id="verspätung1">pünktlich</h6>' },
+            { line: '<h6 id="nr2"></h6>', type: 'zug', destination: '<p id="stationsname2"></p>', time: '<p id="abfahrt2"></p>', platform: '<div id="gleis2" class="small text-muted">Gleis: -</div>', color: 'line-green', delay: '<h6 id="verspätung2">pünktlich</h6>' },
+            { line: '<h6 id="nr3"></h6>', type: 'zug', destination: '<p id="stationsname3"></p>', time: '<p id="abfahrt3"></p>', platform: '<div id="gleis3" class="small text-muted">Gleis: -</div>', color: 'line-blue', delay: '<h6 id="verspätung3">pünktlich</h6>' },
+            { line: '<h6 id="nr4"></h6>', type: 'zug', destination: '<p id="stationsname4"></p>', time: '<p id="abfahrt4"></p>', platform: '<div id="gleis4" class="small text-muted">Gleis: -</div>', color: 'line-purple', delay: '<h6 id="verspätung4">pünktlich</h6>' },
+            { line: '<h6 id="nr5"></h6>', type: 'zug', destination: '<p id="stationsname5"></p>', time: '<p id="abfahrt5"></p>', platform: '<div id="gleis5" class="small text-muted">Gleis: -</div>', color: 'line-pink', delay: '<h6 id="verspätung5">pünktlich</h6>' },
         ];
 
     
@@ -276,6 +279,7 @@ suggestionsBox.addEventListener('click', e => {
                             </div>
                             <div class="text-end">
                                 <div class="departure-time">${dep.time}</div>
+                                ${dep.platform}
                                 <div class="small text-muted d-flex align-items-center gap-1">
                                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                                         <circle cx="12" cy="12" r="10"></circle>

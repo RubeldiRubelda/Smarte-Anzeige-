@@ -49,6 +49,10 @@
             $('#updateTime').text(now.toLocaleTimeString('de-CH'));
         }
 
+        // Global konfigurieren: Station und Limit werden beim Laden gesetzt und können vom Input überschrieben werden
+        let station = "Kriens Mattenhof"; // Standardstation
+        let limit = 5; // Anzahl Abfahrten
+
 
 
 
@@ -97,14 +101,54 @@
             setInterval(updateTime, 1000);
             // Wetter alle 10 Minuten aktualisieren
             setInterval(loadWeather, 600000);
+
+            // Station-Input mit globaler Variable verbinden
+            try {
+                // Setze den Input-Wert beim Laden auf die Default-Station
+                const $stationInput = $('#stationsnameinfo');
+                if ($stationInput.length) {
+                    $stationInput.val(station);
+
+                    // Debounce-Helfer, damit nicht bei jedem Tastendruck sofort neu geladen wird
+                    const debounce = (fn, wait) => {
+                        let t;
+                        return function(...args) {
+                            clearTimeout(t);
+                            t = setTimeout(() => fn.apply(this, args), wait);
+                        };
+                    };
+
+                    const onStationChanged = debounce(function() {
+                        const v = $stationInput.val().trim();
+                        station = v.length ? v : 'Kriens Mattenhof';
+                        // sofort neu laden nachdem Station geändert wurde
+                        öVabfahrt();
+                    }, 800);
+
+                    // Aktualisiere variable beim Tippen (debounced) und auf Change
+                    $stationInput.on('input', onStationChanged);
+                    $stationInput.on('change', function() {
+                        const v = $stationInput.val().trim();
+                        station = v.length ? v : 'Kriens Mattenhof';
+                        öVabfahrt();
+                    });
+                }
+            } catch (e) {
+                console.error('Fehler beim Binden des Station-Inputs:', e);
+            }
         });
+
+
 
 
 
         async function öVabfahrt() {
     try {
-        // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG
-        const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Zürich HB&limit=5");
+            // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG
+            // Die Variablen `station` und `limit` sind jetzt global (oben definiert)
+            // Verwende Template-Literal und encodeURIComponent, damit z.B. Leerzeichen korrekt im URL-Query-String sind
+            const url = `https://transport.opendata.ch/v1/stationboard?station=${encodeURIComponent(station)}&limit=${encodeURIComponent(limit)}`;
+            const response = await fetch(url);
         const data = await response.json();
         const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };  
         
@@ -117,8 +161,8 @@
         const destination = data?.stationboard[0].to ?? "Unbekanntes Ziel";
         const delay = data?.stationboard[0].stop.delay ?? "Ufpasse";
         const departureTime = data?.stationboard[0].stop.departure ?? "Unbekannte Zeit"; // Ausgabe Format: 2025-11-07T14:10:00+0100
-        // ALLGEMEINE INFO ON TOP
-        document.getElementById("stationsnameinfo").textContent = "Station: " + stationName;
+    // ALLGEMEINE INFO ON TOP
+    // Wir setzen hier nicht die placeholder/value direkt, das passiert beim Dokument-Ready.
         // HIER GEHTS LOS
         document.getElementById("nr1").textContent = bahnnr + bahnzahl;
         document.getElementById("stationsname").textContent = "Fährt ab " + stationName + " nach " + destination;
@@ -131,7 +175,10 @@
         }
         
         const depDate = new Date(departureTime);
-        document.getElementById("abfahrt1").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
+    document.getElementById("abfahrt1").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
+    // Gleis/Platform
+    const platform1 = data?.stationboard[0]?.stop?.platform ?? data?.stationboard[0]?.stop?.platformName ?? '–';
+    document.getElementById("gleis1").textContent = "Gleis: " + platform1;
         /// ABFAHRT 1 ENDE ///  
         
         /// ABFAHRT 2 ///
@@ -150,7 +197,9 @@
             document.getElementById("verspätung2").textContent = "pünktlich";
         }
         const depDate2 = new Date(departureTime2);
-        document.getElementById("abfahrt2").textContent = "Abfahrt: " + depDate2.toLocaleTimeString('de-CH', options);
+    document.getElementById("abfahrt2").textContent = "Abfahrt: " + depDate2.toLocaleTimeString('de-CH', options);
+    const platform2 = data?.stationboard[1]?.stop?.platform ?? data?.stationboard[1]?.stop?.platformName ?? '–';
+    document.getElementById("gleis2").textContent = "Gleis: " + platform2;
         /// ABFAHRT 2 ENDE ///
         /// ABFAHRT 3 ///
         const stationName3 = data?.station?.name ?? "Unbekannte Station";
@@ -168,7 +217,9 @@
             document.getElementById("verspätung3").textContent = "pünktlich";
         }
         const depDate3 = new Date(departureTime3);
-        document.getElementById("abfahrt3").textContent = "Abfahrt: " + depDate3.toLocaleTimeString('de-CH', options);
+    document.getElementById("abfahrt3").textContent = "Abfahrt: " + depDate3.toLocaleTimeString('de-CH', options);
+    const platform3 = data?.stationboard[2]?.stop?.platform ?? data?.stationboard[2]?.stop?.platformName ?? '–';
+    document.getElementById("gleis3").textContent = "Gleis: " + platform3;
         /// ABFAHRT 3 ENDE ///
         /// ABFAHRT 4 ///
         const stationName4 = data?.station?.name ?? "Unbekannte Station";
@@ -187,7 +238,9 @@
         }
         const depDate4 = new Date(departureTime4);
         const options4 = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
-        document.getElementById("abfahrt4").textContent = "Abfahrt: " + depDate4.toLocaleTimeString('de-CH', options);
+    document.getElementById("abfahrt4").textContent = "Abfahrt: " + depDate4.toLocaleTimeString('de-CH', options);
+    const platform4 = data?.stationboard[3]?.stop?.platform ?? data?.stationboard[3]?.stop?.platformName ?? '–';
+    document.getElementById("gleis4").textContent = "Gleis: " + platform4;
         /// ABFAHRT 4 ENDE ///
         /// ABFAHRT 5 ///
         const stationName5 = data?.station?.name ?? "Unbekannte Station";
@@ -206,7 +259,9 @@
             document.getElementById("verspätung5").textContent = "pünktlich";
         }
         const options5 = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
-        document.getElementById("abfahrt5").textContent = "Abfahrt: " + depDate5.toLocaleTimeString('de-CH', options);
+    document.getElementById("abfahrt5").textContent = "Abfahrt: " + depDate5.toLocaleTimeString('de-CH', options);
+    const platform5 = data?.stationboard[4]?.stop?.platform ?? data?.stationboard[4]?.stop?.platformName ?? '–';
+    document.getElementById("gleis5").textContent = "Gleis: " + platform5;
         /// ABFAHRT 5 ENDE ///
 
 
@@ -219,7 +274,8 @@
 öVabfahrt();
 
 // Abfahrtsanzeige alle 10 Sekunden aktualisieren
-setInterval(öVabfahrt, 10000);
+    // Abfahrtsanzeige alle 30 Sekunden aktualisieren
+    setInterval(öVabfahrt, 30000);
 
 
         async function joke() {
