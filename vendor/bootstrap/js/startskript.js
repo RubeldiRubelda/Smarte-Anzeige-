@@ -104,9 +104,10 @@
         async function öVabfahrt() {
     try {
         // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG // CONFIG
-        const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
+        const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Zürich HB&limit=5");
         const data = await response.json();
-        const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
+        const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };  
+        
         // CONFIG ENDE // CONFIG ENDE // CONFIG ENDE // CONFIG ENDE // CONFIG ENDE // CONFIG ENDE // CONFIG ENDE
 
         /// ABFAHRT 1 ///
@@ -116,6 +117,9 @@
         const destination = data?.stationboard[0].to ?? "Unbekanntes Ziel";
         const delay = data?.stationboard[0].stop.delay ?? "Ufpasse";
         const departureTime = data?.stationboard[0].stop.departure ?? "Unbekannte Zeit"; // Ausgabe Format: 2025-11-07T14:10:00+0100
+        // ALLGEMEINE INFO ON TOP
+        document.getElementById("stationsnameinfo").textContent = "Station: " + stationName;
+        // HIER GEHTS LOS
         document.getElementById("nr1").textContent = bahnnr + bahnzahl;
         document.getElementById("stationsname").textContent = "Fährt ab " + stationName + " nach " + destination;
         console.log(delay);
