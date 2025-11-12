@@ -154,12 +154,6 @@
 
 
 
-
-
-
-
-
-
         async function öVabfahrt2() {
     try {
         const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
@@ -201,9 +195,16 @@
 
 
 
+
+
+
+
+
+
+
         async function öVabfahrt3() {
     try {
-        const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=3");
+        const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
         const data = await response.json();
 
         // Stationsname auslesen
@@ -236,9 +237,13 @@
         console.error("Fehler beim Laden:", error);
     }
 }
-
 // Beim Laden der Seite ausführen
 öVabfahrt3();
+
+  
+
+
+
 
         async function öVabfahrt4() {
     try {
