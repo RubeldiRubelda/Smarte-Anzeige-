@@ -217,7 +217,7 @@
 
         async function joke() {
             try {
-                const response = await fetch("https://v2.jokeapi.dev/joke/Programming");
+                const response = await fetch("https://v2.jokeapi.dev/joke/Programming?lang=de");
                 const data = await response.json();
                 const jokeout = data?.joke ?? "Warten auf den nächsten Witz...";
                 console.log(jokeout);
