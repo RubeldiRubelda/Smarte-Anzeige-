@@ -257,52 +257,11 @@
 
         // In HTML einsetzen
         
-        document.getElementById("nr3").textContent = bahnnr + bahnzahl;
+        document.getElementById("nr4").textContent = bahnnr + bahnzahl;
         document.getElementById("stationsname4").textContent = "Fährt ab " + stationName + " nach " + destination;
         console.log(delay);
         if (delay > 0) {
             document.getElementById("verspätung4").textContent = "Verspätung: +" + delay + " Min.";
-        }
-        // Abfahrtszeit formatieren
-        const depDate = new Date(departureTime);
-        const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
-        document.getElementById("abfahrt3").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
-
-
-
-
-    } catch (error) {
-        console.error("Fehler beim Laden:", error);
-    }
-}
-
-// Beim Laden der Seite ausführen
-öVabfahrt4();
-
-
-
-        async function öVabfahrt3() {
-    try {
-        const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
-        const data = await response.json();
-
-        // Stationsname auslesen
-        const stationName = data?.station?.name ?? "Unbekannte Station";
-        const bahnnr = data?.stationboard[1].category ?? "NaN";
-        const bahnzahl = data?.stationboard[1].number ?? "NaN";
-        const destination = data?.stationboard[1].to ?? "Unbekanntes Ziel";
-        const delay = data?.stationboard[1].stop.delay ?? "Ufpasse";
-        const departureTime = data?.stationboard[1].stop.departure ?? "Unbekannte Zeit"; // Ausgabe Format: 2025-11-07T14:10:00+0100
-
-        
-
-        // In HTML einsetzen
-        
-        document.getElementById("nr3").textContent = bahnnr + bahnzahl;
-        document.getElementById("stationsname3").textContent = "Fährt ab " + stationName + " nach " + destination;
-        console.log(delay);
-        if (delay > 0) {
-            document.getElementById("verspätung3").textContent = "Verspätung: +" + delay + " Min.";
         }
         // Abfahrtszeit formatieren
         const depDate = new Date(departureTime);
@@ -318,7 +277,48 @@
 }
 
 // Beim Laden der Seite ausführen
-öVabfahrt3();
+öVabfahrt4();
+
+
+
+        async function öVabfahrt5() {
+    try {
+        const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
+        const data = await response.json();
+
+        // Stationsname auslesen
+        const stationName = data?.station?.name ?? "Unbekannte Station";
+        const bahnnr = data?.stationboard[4].category ?? "NaN";
+        const bahnzahl = data?.stationboard[4].number ?? "NaN";
+        const destination = data?.stationboard[4].to ?? "Unbekanntes Ziel";
+        const delay = data?.stationboard[4].stop.delay ?? "Ufpasse";
+        const departureTime = data?.stationboard[4].stop.departure ?? "Unbekannte Zeit"; // Ausgabe Format: 2025-11-07T14:10:00+0100
+
+        
+
+        // In HTML einsetzen
+        
+        document.getElementById("nr5").textContent = bahnnr + bahnzahl;
+        document.getElementById("stationsname5").textContent = "Fährt ab " + stationName + " nach " + destination;
+        console.log(delay);
+        if (delay > 0) {
+            document.getElementById("verspätung5").textContent = "Verspätung: +" + delay + " Min.";
+        }
+        // Abfahrtszeit formatieren
+        const depDate = new Date(departureTime);
+        const options = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
+        document.getElementById("abfahrt5").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
+
+
+
+
+    } catch (error) {
+        console.error("Fehler beim Laden:", error);
+    }
+}
+
+// Beim Laden der Seite ausführen
+öVabfahrt5();
 
 
 
