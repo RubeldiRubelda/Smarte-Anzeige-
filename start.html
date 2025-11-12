@@ -144,7 +144,14 @@
                 <div class="card-custom" style="padding: 1.5rem;">
                     <h2 class="h5 fw-bold mb-3">Informationen</h2>
                     <div class="row g-2">
-                    <iframe frameborder="0" style="height: 350px; overflow:scroll; width: 100%" src="README.md" marginheight="1" marginwidth="1" name="cboxmain" id="cboxmain" seamless="seamless" scrolling="no" frameborder="0" allowtransparency="true"></iframe>
+                    <div id="markdown"></div>
+                    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+                    <script>
+                    fetch("infoscreen.md")
+                      .then(res => res.text())
+                      .then(md => document.getElementById("markdown").innerHTML = marked.parse(md));
+                    </script>
+
                     </div>
                 </div>
             </div>
