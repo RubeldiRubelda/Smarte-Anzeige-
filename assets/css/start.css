@@ -162,3 +162,80 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+.search-container {
+    position: relative;
+    display: inline-block;
+}
+
+/* Eingabefeld standardmäßig versteckt */
+.search-input {
+    display: none;
+    position: absolute;
+    top: 120%; /* etwas unter dem Icon */
+    right: 0;
+    width: 250px;
+    max-width: 90vw;
+    padding: 6px 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+    box-sizing: border-box;
+}
+
+.search-input.show {
+    display: block;
+}
+
+/* Vorschläge */
+.suggestions {
+    list-style: none;
+    position: absolute;
+    right: 0;
+    top: calc(120% + 35px);
+    width: 250px;
+    max-width: 90vw;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    max-height: 200px;
+    overflow-y: auto;
+    margin: 0;
+    padding: 0;
+    display: none;
+    z-index: 101;
+    box-sizing: border-box;
+}
+
+.suggestions.show {
+    display: block;
+}
+
+.suggestions li {
+    padding: 8px 10px;
+    cursor: pointer;
+}
+
+.suggestions li:hover {
+    background: #f0f0f0;
+}
+
+/* Kein horizontales Scrollen global */
+html, body {
+    overflow-x: hidden;
+}
