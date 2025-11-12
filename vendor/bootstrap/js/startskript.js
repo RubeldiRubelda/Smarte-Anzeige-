@@ -214,6 +214,9 @@
 // Beim Laden der Seite ausführen
 öVabfahrt();
 
+// Abfahrtsanzeige alle 10 Sekunden aktualisieren
+setInterval(öVabfahrt, 10000);
+
 
         async function joke() {
             try {
