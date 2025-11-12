@@ -162,7 +162,7 @@
 
         async function öVabfahrt2() {
     try {
-        const response = await fetch("http://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
+        const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
         const data = await response.json();
 
         // Stationsname auslesen
@@ -203,7 +203,7 @@
 
         async function öVabfahrt3() {
     try {
-        const response = await fetch("http://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
+        const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
         const data = await response.json();
 
         // Stationsname auslesen
@@ -242,7 +242,7 @@
 
         async function öVabfahrt4() {
     try {
-        const response = await fetch("http://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
+        const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
         const data = await response.json();
 
         // Stationsname auslesen
@@ -283,7 +283,7 @@
 
         async function öVabfahrt3() {
     try {
-        const response = await fetch("http://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
+        const response = await fetch("https://transport.opendata.ch/v1/stationboard?station=Kriens%20Mattenhof&limit=5");
         const data = await response.json();
 
         // Stationsname auslesen
