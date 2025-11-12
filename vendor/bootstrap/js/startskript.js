@@ -114,14 +114,18 @@
         const bahnnr = data?.stationboard[0].category ?? "NaN";
         const bahnzahl = data?.stationboard[0].number ?? "NaN";
         const destination = data?.stationboard[0].to ?? "Unbekanntes Ziel";
-        const delay1 = data?.stationboard[0].stop.delay ?? "Ufpasse";
+        const delay = data?.stationboard[0].stop.delay ?? "Ufpasse";
         const departureTime = data?.stationboard[0].stop.departure ?? "Unbekannte Zeit"; // Ausgabe Format: 2025-11-07T14:10:00+0100
         document.getElementById("nr1").textContent = bahnnr + bahnzahl;
         document.getElementById("stationsname").textContent = "Fährt ab " + stationName + " nach " + destination;
-        console.log(delay1);
-        if (delay1 >= 2) {
-            document.getElementById("verspätung1").textContent = "Verspätung: +" + delay1 + " Min.";
+        console.log(delay);
+        
+        if (delay > 0) {
+            document.getElementById("verspätung1").textContent = "Verspätung: +" + delay + " Min.";
+        } else {
+            document.getElementById("verspätung1").textContent = "pünktlich";
         }
+        
         const depDate = new Date(departureTime);
         document.getElementById("abfahrt1").textContent = "Abfahrt: " + depDate.toLocaleTimeString('de-CH', options);
         /// ABFAHRT 1 ENDE ///  
@@ -137,7 +141,9 @@
         document.getElementById("stationsname2").textContent = "Fährt ab " + stationName2 + " nach " + destination2;
         console.log(delay2);
         if (delay2 > 0) {
-            document.getElementById("verspätung1").textContent = "Verspätung: +" + delay2 + " Min.";
+            document.getElementById("verspätung2").textContent = "Verspätung: +" + delay2 + " Min.";
+        } else {
+            document.getElementById("verspätung2").textContent = "pünktlich";
         }
         const depDate2 = new Date(departureTime2);
         document.getElementById("abfahrt2").textContent = "Abfahrt: " + depDate2.toLocaleTimeString('de-CH', options);
@@ -152,8 +158,10 @@
         document.getElementById("nr3").textContent = bahnnr3 + bahnzahl3;
         document.getElementById("stationsname3").textContent = "Fährt ab " + stationName3 + " nach " + destination3;
         console.log(delay3);
-                if (delay3 > 0) {
-            document.getElementById("verspätung1").textContent = "Verspätung: +" + delay3 + " Min.";
+        if (delay3 > 0) {
+            document.getElementById("verspätung3").textContent = "Verspätung: +" + delay3 + " Min.";
+        } else {
+            document.getElementById("verspätung3").textContent = "pünktlich";
         }
         const depDate3 = new Date(departureTime3);
         document.getElementById("abfahrt3").textContent = "Abfahrt: " + depDate3.toLocaleTimeString('de-CH', options);
@@ -168,8 +176,10 @@
         document.getElementById("nr4").textContent = bahnnr4 + bahnzahl4;
         document.getElementById("stationsname4").textContent = "Fährt ab " + stationName4 + " nach " + destination4;
         console.log(delay4);
-                if (delay4 > 0) {
-            document.getElementById("verspätung1").textContent = "Verspätung: +" + delay4 + " Min.";
+        if (delay4 > 0) {
+            document.getElementById("verspätung4").textContent = "Verspätung: +" + delay4 + " Min.";
+        } else {
+            document.getElementById("verspätung4").textContent = "pünktlich";
         }
         const depDate4 = new Date(departureTime4);
         const options4 = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
@@ -186,8 +196,10 @@
         document.getElementById("stationsname5").textContent = "Fährt ab " + stationName5 + " nach " + destination5;
         const depDate5 = new Date(departureTime5);
         console.log(delay5);
-                if (delay5 >= 1) {
-            document.getElementById("verspätung1").textContent = "Verspätung: +" + delay5 + " Min.";
+        if (delay5 > 0) {
+            document.getElementById("verspätung5").textContent = "Verspätung: +" + delay5 + " Min.";
+        } else {
+            document.getElementById("verspätung5").textContent = "pünktlich";
         }
         const options5 = { hour: '2-digit', minute: '2-digit', hour12: false, timeZone: 'Europe/Berlin' };
         document.getElementById("abfahrt5").textContent = "Abfahrt: " + depDate5.toLocaleTimeString('de-CH', options);

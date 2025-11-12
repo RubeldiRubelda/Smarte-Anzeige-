@@ -242,11 +242,11 @@ suggestionsBox.addEventListener('click', e => {
     <script src="/vendor/bootstrap/js/startskript.js"></script>
     <script>
         const departures = [
-            { line: '<h6 id="nr1"></h6>', type: 'zug', destination: '<p id="stationsname"></p>', time: '<p id="abfahrt1"></p>', color: 'line-yellow' },
-            { line: '<h6 id="nr2"></h6>', type: 'zug', destination: '<p id="stationsname2"></p>', time: '<p id="abfahrt2"></p>', color: 'line-green' },
-            { line: '<h6 id="nr3"></h6>', type: 'zug', destination: '<p id="stationsname3"></p>', time: '<p id="abfahrt3"></p>', color: 'line-blue' },
-            { line: '<h6 id="nr4"></h6>', type: 'zug', destination: '<p id="stationsname4"></p>', time: '<p id="abfahrt4"></p>', color: 'line-purple' },
-            { line: '<h6 id="nr5"></h6>', type: 'zug', destination: '<p id="stationsname5"></p>', time: '<p id="abfahrt5"></p>', color: 'line-pink' },
+            { line: '<h6 id="nr1"></h6>', type: 'zug', destination: '<p id="stationsname"></p>', time: '<p id="abfahrt1"></p>', color: 'line-yellow', delay: '<h6 id="verspätung1">pünktlich</h6>' },
+            { line: '<h6 id="nr2"></h6>', type: 'zug', destination: '<p id="stationsname2"></p>', time: '<p id="abfahrt2"></p>', color: 'line-green', delay: '<h6 id="verspätung2">pünktlich</h6>' },
+            { line: '<h6 id="nr3"></h6>', type: 'zug', destination: '<p id="stationsname3"></p>', time: '<p id="abfahrt3"></p>', color: 'line-blue', delay: '<h6 id="verspätung3">pünktlich</h6>' },
+            { line: '<h6 id="nr4"></h6>', type: 'zug', destination: '<p id="stationsname4"></p>', time: '<p id="abfahrt4"></p>', color: 'line-purple', delay: '<h6 id="verspätung4">pünktlich</h6>' },
+            { line: '<h6 id="nr5"></h6>', type: 'zug', destination: '<p id="stationsname5"></p>', time: '<p id="abfahrt5"></p>', color: 'line-pink', delay: '<h6 id="verspätung5">pünktlich</h6>' },
         ];
 
     
@@ -280,7 +280,7 @@ suggestionsBox.addEventListener('click', e => {
                                         <circle cx="12" cy="12" r="10"></circle>
                                         <polyline points="12 6 12 12 16 14"></polyline>
                                     </svg>
-                                    <h6 id="verspätung1">pünktlich</h6>
+                                    ${dep.delay}
                                 </div>
                             </div>
                         </div>
