@@ -4,5 +4,5 @@
 
 
 Da meine Kamera zu grosse Fotos macht, kann ich momentan keine Bilder hochladen.
-<img src="image.png" width="200" height="800">
+<img src="image.png" width="200" height="600">
 
