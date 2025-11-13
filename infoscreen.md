@@ -3,7 +3,6 @@
 
 
 
-Bild des Tages:
-
+Da meine Kamera zu grosse Fotos macht, kann ich momentan keine Bilder hochladen.
 
 ![alt text](/image.png)
