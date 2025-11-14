@@ -3,6 +3,6 @@
 
 
 
-Da meine Kamera zu grosse Fotos macht, kann ich momentan keine Bilder hochladen.
+Vorbereitung für das kleine Raclette essen :)
 <img src="image.jpg" width="200" height="600">
 
