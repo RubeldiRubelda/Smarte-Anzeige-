@@ -4,5 +4,5 @@
 
 
 ### WE LOVE PHP!
-<img src="image.jpg" width="200" height="600">
+<img src="image.jpg" width="600" height="200">
 
